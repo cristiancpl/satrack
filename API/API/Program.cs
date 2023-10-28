@@ -16,6 +16,9 @@ builder.Services.AddSingleton(new Conexion { ConexionSatrack = builder.Configura
 builder.Services.AddSingleton<IBrokerEstados, BrokerEstados>();
 builder.Services.AddSingleton<IGestorEstados, GestorEstados>();
 
+builder.Services.AddSingleton<IBrokerCategorias, BrokerCategorias>();
+builder.Services.AddSingleton<IGestorCategorias, GestorCategorias>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
