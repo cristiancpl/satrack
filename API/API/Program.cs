@@ -1,6 +1,7 @@
 using Datos;
 using Entidades;
 using Negocio;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +19,17 @@ builder.Services.AddSingleton<IGestorEstados, GestorEstados>();
 
 builder.Services.AddSingleton<IBrokerCategorias, BrokerCategorias>();
 builder.Services.AddSingleton<IGestorCategorias, GestorCategorias>();
+
+builder.Services.AddSingleton<IBrokerTareas, BrokerTareas>();
+builder.Services.AddSingleton<IGestorTareas, GestorTareas>();
+
+
+builder.Services.AddControllers().AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+});
+
+
 
 var app = builder.Build();
 

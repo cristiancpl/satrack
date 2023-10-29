@@ -21,7 +21,7 @@ namespace API.Controllers
 
         // GET: api/<CategoriasController>
         [HttpGet]
-        public List<Categorias> Get()
+        public List<Categoria> Get()
         {
             return gestorCategorias.Consutar();
         }

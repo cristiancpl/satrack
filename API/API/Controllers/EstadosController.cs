@@ -18,7 +18,7 @@ namespace API.Controllers
 
         // GET: api/<EstadosController>
         [HttpGet]
-        public List<Estados> Get()
+        public List<Estado> Get()
         {
             return gestorEstados.Consutar();
         }

@@ -65,12 +65,8 @@ BEGIN
 	OUTPUT inserted.id INTO @registro_procesado;
 
 
-	SELECT CAST((
-	    SELECT id
-	    FROM @registro_procesado
-	    FOR JSON PATH
-	)AS NVARCHAR(MAX)) AS Resultado
-	OPTION (OPTIMIZE FOR UNKNOWN)
+	SELECT id
+	FROM @registro_procesado
 
 END
 GO
@@ -92,13 +88,17 @@ CREATE PROCEDURE [dbo].[tareas_consultar]
 AS 
 BEGIN
 
-	SELECT id
-		  ,id_categoria
-		  ,id_estado
-		  ,fecha_limite
-		  ,nombre
-		  ,descripcion
-	  FROM dbo.tareas
+		SELECT T.id
+			  ,T.id_categoria
+			  ,C.nombre as nombre_categoria
+			  ,T.id_estado
+			  ,E.nombre as nombre_estado
+			  ,T.fecha_limite
+			  ,T.nombre
+			  ,T.descripcion
+		  FROM dbo.tareas T
+		  INNER JOIN dbo.categorias C ON C.id = T.id_categoria
+		  INNER JOIN dbo.estados E ON E.id = T.id_estado
 
 END
 GO
@@ -149,4 +149,74 @@ BEGIN
 	  FROM dbo.categorias
 
 END
+GO
+
+
+
+IF EXISTS
+(
+    SELECT *
+    FROM sysobjects
+    WHERE id = OBJECT_ID(N'[dbo].[tareas_eliminar]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1
+)
+    BEGIN
+        DROP PROCEDURE [dbo].[tareas_eliminar]
+    END
+GO
+
+-- ==================================================================================================================
+-- Author:	 Cristian Pérez <cristianperez@outlook.com>
+-- Create date: 28/10/2023
+-- Description: Borra una tarea
+-- ==================================================================================================================
+CREATE PROCEDURE [dbo].[tareas_eliminar]
+(
+    @id  INT
+)
+AS
+     BEGIN
+
+	   DELETE FROM tareas WHERE id = @Id
+
+     END
+GO
+
+
+IF EXISTS
+(
+    SELECT *
+    FROM sysobjects
+    WHERE id = OBJECT_ID(N'[dbo].[tareas_consultar_id]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1
+)
+    BEGIN
+        DROP PROCEDURE [dbo].[tareas_consultar_id]
+    END
+GO
+
+-- ==================================================================================================================
+-- Author:	 Cristian Pérez <cristianperez@outlook.com>
+-- Create date: 28/10/2023
+-- Description: Consulta la tarea asociada con el identificador
+-- ==================================================================================================================
+CREATE PROCEDURE [dbo].[tareas_consultar_id]
+(
+    @id INT
+)
+AS
+     BEGIN
+
+		SELECT T.id
+			  ,T.id_categoria
+			  ,C.nombre as nombre_categoria
+			  ,T.id_estado
+			  ,E.nombre as nombre_estado
+			  ,T.fecha_limite
+			  ,T.nombre
+			  ,T.descripcion
+		  FROM dbo.tareas T
+		  INNER JOIN dbo.categorias C ON C.id = T.id_categoria
+		  INNER JOIN dbo.estados E ON E.id = T.id_estado
+		  WHERE T.id = @id
+
+     END
 GO

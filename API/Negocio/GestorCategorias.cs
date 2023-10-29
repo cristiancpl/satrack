@@ -1,10 +1,5 @@
 ﻿using Datos;
 using Entidades;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Negocio
 {
@@ -17,7 +12,7 @@ namespace Negocio
                 brokerCategorias = _brokerCategorias;
         }
 
-        public List<Categorias> Consutar()
+        public List<Categoria> Consutar()
         {
             return brokerCategorias.Consutar();
         }

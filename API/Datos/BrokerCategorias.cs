@@ -1,11 +1,7 @@
 ﻿using Entidades;
-using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 namespace Datos
 {
     public class BrokerCategorias : IBrokerCategorias
@@ -18,9 +14,9 @@ namespace Datos
             conexion = _conexion.ConexionSatrack;
         }
 
-        public List<Categorias> Consutar()
+        public List<Categoria> Consutar()
         {
-            var categorias = new List<Categorias>();
+            var categorias = new List<Categoria>();
 
             using (var conn = new SqlConnection(conexion))
             {
@@ -32,7 +28,7 @@ namespace Datos
 
                 while (reader.Read())
                 {
-                    categorias.Add(new Categorias
+                    categorias.Add(new Categoria
                     {
                         id = Convert.ToInt32(reader["id"]),
                         nombre = Convert.ToString(reader["nombre"]),

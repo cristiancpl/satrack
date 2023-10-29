@@ -4,6 +4,6 @@ namespace Negocio
 {
     public interface IGestorCategorias
     {
-        List<Categorias> Consutar();
+        List<Categoria> Consutar();
     }
 }
