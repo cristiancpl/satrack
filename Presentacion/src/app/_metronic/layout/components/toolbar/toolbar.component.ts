@@ -6,6 +6,9 @@ import {
   ViewChild,
 } from '@angular/core';
 import { LayoutService } from '../../core/layout.service';
+import { DrawerComponent } from '../../../kt/components';
+import { CrearTareaComponent } from '../../../../modules/tareas/components/crear-tarea/crear-tarea.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-toolbar',
@@ -20,7 +23,7 @@ export class ToolbarComponent implements OnInit, AfterViewInit {
   toolbarContainerCssClasses: string = '';
   pageTitleCssClasses: string = '';
 
-  constructor(private layout: LayoutService) {}
+  constructor(private layout: LayoutService, public dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.toolbarContainerCssClasses = this.layout.getStringCSSClasses('toolbarContainer');
@@ -41,4 +44,8 @@ export class ToolbarComponent implements OnInit, AfterViewInit {
       }
     }
   }
+
+
+
+
 }

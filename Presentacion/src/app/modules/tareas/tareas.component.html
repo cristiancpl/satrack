@@ -1,0 +1,23 @@
+
+<div class="d-flex justify-content-end py-6 px-9">
+  <!--<button class="btn btn-light btn-active-light-primary me-2">
+    Filtrar
+  </button>-->
+
+  <button type="button" class="btn btn-primary" (click)="crearTarea()">
+    Crear tarea
+  </button>
+</div>
+
+
+<div class="row gy-5 g-xl-8">
+  <div *ngFor="let estado of estados" class="col-xl-4">
+    <app-estado [estado]="estado"
+                (actualizarTareaEvent)="RefrescarTareas($event)"
+                class="card card-xl-stretch mb-xl-8">
+    </app-estado>
+  </div>
+
+</div>
+
+<!-- end::Row -->

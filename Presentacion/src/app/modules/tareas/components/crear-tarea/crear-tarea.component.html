@@ -1,0 +1,137 @@
+<h1 mat-dialog-title>Detalles de la tarea</h1>
+<div mat-dialog-content>
+  <div class="card-body">
+
+    <form [formGroup]="form">
+
+      <div>
+        <div class="fv-row mb-10">
+          <label class="form-label required">Nombre</label>
+          <input [(ngModel)]="tareaActual.nombre"
+                 name="nombre"
+                 formControlName="nombre"
+                 class="form-control form-control-lg form-control-solid" />
+
+          <div class="fv-plugins-message-container invalid-feedback"
+               *ngIf="form.get('nombre')?.hasError('required') && form.get('nombre')?.touched">
+            Nombre es requerido
+          </div>
+
+        </div>
+
+        <div class="fv-row mb-10">
+          <label class="form-label">Descripción</label>
+          <textarea [(ngModel)]="tareaActual.descripcion"
+                    name="descripcion"
+                    
+                    formControlName="descripcion"
+                    class="form-control form-control-lg form-control-solid"
+                    rows="3"></textarea>
+        </div>
+
+        <div class="fv-row mb-10">
+          <label class="form-label required">Estado</label>
+          <select [(ngModel)]="tareaActual.estado"
+                  name="estado"
+                  formControlName="estado"
+                  class="form-select form-select-lg form-select-solid">
+            <option *ngFor="let item of estados" [ngValue]="item">
+              {{item.nombre}}
+            </option>
+          </select>
+
+          <div class="fv-plugins-message-container invalid-feedback"
+               *ngIf="form.get('estado')?.hasError('required') && form.get('estado')?.touched">
+            Estado es requerido
+          </div>
+
+        </div>
+
+        <div class="fv-row mb-10">
+          <label class="form-label required">Categoría</label>
+          <select [(ngModel)]="tareaActual.categoria"
+                  name="categoria"
+                  formControlName="categoria"
+                  class="form-select form-select-lg form-select-solid">
+            <option *ngFor="let item of categorias" [ngValue]="item">
+              {{item.nombre}}
+            </option>
+          </select>
+
+          <div class="fv-plugins-message-container invalid-feedback"
+               *ngIf="form.get('categoria')?.hasError('required') && form.get('categoria')?.touched">
+            Categoría es requerida
+          </div>
+
+        </div>
+
+        <div class="fv-row mb-0">
+          <label class="fs-6 form-label required">Fecha límite</label>
+          <br />
+          <mat-form-field class="w-100">
+            <input matInput
+                   [(ngModel)]="tareaActual.fecha_limite"
+                   name="fecha_limite"
+                   formControlName="fecha_limite"
+                   [min]="fechaMinima"
+                   [matDatepicker]="picker" readonly>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+
+          <div class="fv-plugins-message-container invalid-feedback"
+               *ngIf="form.get('fecha_limite')?.hasError('required') && form.get('fecha_limite')?.touched">
+            Fecha límite es requerida
+          </div>
+
+        </div>
+      </div>
+
+
+    </form>
+
+  </div>
+</div>
+<div mat-dialog-actions align="center" class="p-10 pt-0" >
+
+
+  <div class="d-flex flex-stack pt-15">
+    <div class="mr-2">
+
+      <button mat-dialog-close
+              type="button"
+              class="btn btn-lg btn-light-primary me-3">
+        <span [inlineSVG]="'./assets/media/icons/duotune/arrows/arr063.svg'"
+              class="svg-icon svg-icon-4 me-1"></span>
+        Atrás
+      </button>
+
+    </div>
+
+
+    <div>
+      <button (click)="GuardarTarea()"
+              [disabled]="form.invalid"
+              type="button"
+              class="btn btn-lg btn-primary me-3">
+        <span class="indicator-label">
+
+          Guardar
+        </span>
+      </button>
+    </div>
+
+
+    <div *ngIf="EsEdicion" >
+      <button (click)="EliminarTarea()"  type="button" class="btn btn-danger fw-bold"> Eliminar </button>
+    </div>
+
+  </div>
+
+
+</div>
+
+
+
+
+

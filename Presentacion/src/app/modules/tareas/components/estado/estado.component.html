@@ -1,0 +1,30 @@
+<!-- begin::Header-->
+<div class="card-header border-0 pt-5">
+  <h3 class="card-title align-items-start flex-column">
+    <span class="card-label fw-bolder text-dark">{{estado?.nombre}}</span>
+  </h3>
+</div>
+<!-- end::Header-->
+<!-- begin::Body-->
+<div class="card-body pt-10">
+  <!-- begin::Item-->
+  <div *ngFor="let tarea of estado.tareas" class="d-flex align-items-sm-center mb-7">
+
+    <!-- begin::Section-->
+    <div (click)="EditarTarea(tarea.id)" class="d-flex align-items-center flex-row-fluid flex-wrap cursor-pointer">
+      <div class="flex-grow-1 me-2">
+        <a class="text-gray-800 text-hover-primary fs-6 fw-bolder">
+          {{tarea.nombre}}
+        </a>
+        <span class="text-muted fw-bold d-block fs-7">
+          {{tarea.descripcion}}
+        </span>
+      </div>
+      <span class="badge badge-light fw-bolder my-2">{{tarea?.categoria?.nombre}}</span>
+    </div>
+    <!-- end::Section-->
+  </div>
+  <!-- end::Item-->
+  
+</div>
+<!-- end::Body-->

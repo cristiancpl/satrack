@@ -26,6 +26,10 @@ import { DrawersModule, DropdownMenusModule, ModalsModule, EngagesModule} from '
 import {EngagesComponent} from "../partials/layout/engages/engages.component";
 import { ThemeModeModule } from '../partials/layout/theme-mode-switcher/theme-mode.module';
 
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+
 const routes: Routes = [
   {
     path: '',
@@ -63,7 +67,10 @@ const routes: Routes = [
     DropdownMenusModule,
     NgbTooltipModule,
     TranslateModule,
-    ThemeModeModule
+    ThemeModeModule,
+    MatDialogModule,
+    MatDatepickerModule,
+    MatNativeDateModule 
   ],
   exports: [RouterModule],
 })

@@ -1,5 +1,6 @@
-import { Component, ViewChild } from '@angular/core';
-import { ModalConfig, ModalComponent } from '../../_metronic/partials';
+import { Component } from '@angular/core';
+import { TareasService } from '../../services/tareas.service';
+import { Tarea } from '../../models/tarea';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,15 +8,21 @@ import { ModalConfig, ModalComponent } from '../../_metronic/partials';
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent {
-  modalConfig: ModalConfig = {
-    modalTitle: 'Modal title',
-    dismissButtonLabel: 'Submit',
-    closeButtonLabel: 'Cancel'
-  };
-  @ViewChild('modal') private modalComponent: ModalComponent;
-  constructor() {}
 
-  async openModal() {
-    return await this.modalComponent.open();
+  tareas: Tarea[] = [];
+
+  constructor(private tareasService: TareasService) { }
+
+  ngOnInit() {
+    this.GetTareas();
   }
+
+  GetTareas() {
+    this.tareasService.GetTareas().subscribe({
+      next: (data) => this.tareas = data ? data : [],
+      error: (error) => console.error(error)
+    });
+  }
+
+
 }
