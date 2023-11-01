@@ -13,6 +13,12 @@ namespace Negocio
             brokerTareas = _brokerTareas;
         }
 
+        public int Guardar(Tarea tarea)
+        {
+            var json = JsonConvert.SerializeObject(tarea);
+            return brokerTareas.Guardar(json);
+        }
+
         public List<Tarea> Consutar()
         {
             return brokerTareas.Consutar();
@@ -21,11 +27,6 @@ namespace Negocio
         public Tarea Consutar_id(int id)
         {
             return brokerTareas.Consutar_id(id);
-        }
-
-        public int Guardar(Tarea tarea)
-        {
-            return brokerTareas.Guardar(JsonConvert.SerializeObject(tarea));
         }
 
         public void Eliminar(int id)

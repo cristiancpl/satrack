@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { DropdownMenusModule, ModalsModule, WidgetsModule } from '../../_metronic/partials';
+import { DropdownMenusModule, ModalsModule } from '../../_metronic/partials';
 import { TareasComponent } from './tareas.component';
 
 import { InlineSVGModule } from 'ng-inline-svg-2';
@@ -31,7 +31,6 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
         component: TareasComponent,
       },
     ]),
-    WidgetsModule,
     ModalsModule,
     InlineSVGModule,
     DropdownMenusModule,

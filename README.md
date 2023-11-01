@@ -16,15 +16,17 @@ Ejecutar proyecto API para que estén disponibles los servicios
 
 ## Presentación
 
-Se utilizó Angular en la versión 16
+Se utilizó Angular en la versión 16 con Node v20.8.0
 
-La URL del api se encuentra en:
+También se utilizó plantilla gráfica que contiene layout, bootstrap, i18n, fontawesome, material, right to left y otros insumos gráficos
+
+La URL del API se encuentra en:
 
 environment.ts - apiUrl
 
 Para instalar los paquetes y dependencias:
 
-npm install --legacy-peer-deps
+**npm install --legacy-peer-deps**
 
 Para ejecutar proyecto de angular
 

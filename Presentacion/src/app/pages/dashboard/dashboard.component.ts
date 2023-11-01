@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { TareasService } from '../../services/tareas.service';
-import { Tarea } from '../../models/tarea';
+import { Tarea } from '../../modules/tareas/models/tarea';
+import { TareasService } from '../../modules/tareas/services/tareas.service';
+
 
 @Component({
   selector: 'app-dashboard',
